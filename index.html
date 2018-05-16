@@ -13,9 +13,17 @@
 </style
 </head>
 <body>
+	<script src="jquery-3.3.1.min.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
 	<script>
-		var socket = io();
+		$(function(){
+			var socket = io();
+			$('form').submit(function(){
+				socket.emit('chat message', $(#m).val());
+				$('m').val('');
+				return false;
+			});
+		});
 	</script>
 
 	<ul id="messages"></ul>

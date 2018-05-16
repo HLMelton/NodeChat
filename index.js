@@ -8,9 +8,12 @@ app.get('/', function(req, res){
 
 //Logs in the console whenever a user logs on
 io.on('connection',function(socket){
-	socket.broadcast.emit('a user connected');
+	console.log('a user connected');
 	socket.on('disconnect',function(){
-		socket.broadcast.emit('a user disconnected');
+		console.log('a user disconnected');
+	});
+	socket.on('chat message', function(msg){
+		console.log('message: '+msg)
 	});
 });
 
@@ -18,4 +21,5 @@ io.on('connection',function(socket){
 //Signals that the program is running on localhost:3000
 http.listen(3000, function(){
   console.log('listening on *:3000');
+  console.log('Application now running');
 });
